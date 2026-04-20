@@ -3,6 +3,8 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, Edit3, X, Zap } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const ServicesManager = () => {
     const [services, setServices] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,7 +18,7 @@ const ServicesManager = () => {
 
     const fetchServices = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/api/services');
+            const { data } = await axios.get(`${API_BASE_URL}/api/services`);
             setServices(data);
         } catch (err) {
             console.error(err);
@@ -32,11 +34,11 @@ const ServicesManager = () => {
         const token = JSON.parse(localStorage.getItem('adminUser'))?.token;
         try {
             if (editingService) {
-                await axios.put(`http://localhost:5000/api/services/${editingService._id}`, formData, {
+                await axios.put(`${API_BASE_URL}/api/services/${editingService._id}`, formData, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             } else {
-                await axios.post('http://localhost:5000/api/services', formData, {
+                await axios.post(`${API_BASE_URL}/api/services`, formData, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             }
@@ -53,7 +55,7 @@ const ServicesManager = () => {
         if (window.confirm('Delete this service?')) {
             const token = JSON.parse(localStorage.getItem('adminUser'))?.token;
             try {
-                await axios.delete(`http://localhost:5000/api/services/${id}`, {
+                await axios.delete(`${API_BASE_URL}/api/services/${id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 fetchServices();

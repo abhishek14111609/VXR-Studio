@@ -3,6 +3,8 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Users, FileImage, Layers, TrendingUp } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const Dashboard = () => {
   const [stats, setStats] = useState({
     leads: 0,
@@ -13,10 +15,10 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const leadRes = await axios.get('http://localhost:5000/api/leads', {
+        const leadRes = await axios.get(`${API_BASE_URL}/api/leads`, {
           headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('adminUser'))?.token}` }
         });
-        const portRes = await axios.get('http://localhost:5000/api/portfolio');
+        const portRes = await axios.get(`${API_BASE_URL}/api/portfolio`);
         setStats({
           leads: leadRes.data.length,
           portfolio: portRes.data.length,

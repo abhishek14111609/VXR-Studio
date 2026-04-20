@@ -3,13 +3,15 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import { Trash2, ExternalLink, Mail, Phone, Calendar } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const LeadManager = () => {
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchLeads = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/leads', {
+      const { data } = await axios.get(`${API_BASE_URL}/api/leads`, {
         headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('adminUser'))?.token}` }
       });
       setLeads(data);
@@ -27,7 +29,7 @@ const LeadManager = () => {
   const deleteLead = async (id) => {
     if (window.confirm('Are you sure you want to delete this lead?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/leads/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/leads/${id}`, {
           headers: { Authorization: `Bearer ${JSON.parse(localStorage.getItem('adminUser'))?.token}` }
         });
         fetchLeads();
@@ -55,7 +57,7 @@ const LeadManager = () => {
             No leads found yet. Keep sharing your work!
           </div>
         )}
-        
+
         {leads.map((lead, i) => (
           <motion.div
             key={lead._id}
@@ -70,7 +72,7 @@ const LeadManager = () => {
                 <span className="px-3 py-1 bg-accent/20 text-accent text-xs font-bold rounded-full uppercase tracking-widest">{lead.projectType}</span>
                 <span className="px-3 py-1 bg-white/10 text-gray-400 text-xs font-bold rounded-full">{lead.budget}</span>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-400 mb-6">
                 <div className="flex items-center gap-2"><Mail size={16} /> {lead.email}</div>
                 <div className="flex items-center gap-2"><Phone size={16} /> {lead.phone}</div>
@@ -86,7 +88,7 @@ const LeadManager = () => {
               <a href={`mailto:${lead.email}`} className="p-4 bg-accent/10 text-accent rounded-2xl hover:bg-accent hover:text-white transition-all">
                 <ExternalLink size={20} />
               </a>
-              <button 
+              <button
                 onClick={() => deleteLead(lead._id)}
                 className="p-4 bg-red-400/10 text-red-400 rounded-2xl hover:bg-red-400 hover:text-white transition-all"
               >

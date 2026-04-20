@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const categories = ['All', 'Reels', 'Ads', 'Photography', 'Branding'];
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -18,7 +19,7 @@ const Portfolio = () => {
 
   const fetchPortfolio = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/portfolio');
+      const { data } = await axios.get(`${apiBaseUrl}/api/portfolio`);
       setPortfolioItems(data);
       setLoading(false);
     } catch (err) {

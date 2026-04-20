@@ -4,6 +4,8 @@ import { CheckCircle2, Target, Zap, Users, TrendingUp } from 'lucide-react';
 import axios from 'axios';
 import { fadeInUp, fadeInLeft, fadeInRight, containerVariants, itemVariants } from '../utils/animations';
 
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const defaultBenefits = [
   {
     title: 'Results-Driven',
@@ -30,7 +32,7 @@ const About = () => {
   useEffect(() => {
     const fetchCompanyData = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/company');
+        const { data } = await axios.get(`${apiBaseUrl}/api/company`);
         setCompany(data);
       } catch (err) {
         console.error('Error fetching company data:', err);

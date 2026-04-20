@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { fadeInUp, containerVariants, itemVariants } from '../utils/animations';
 
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,7 +14,7 @@ const Services = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/services');
+        const { data } = await axios.get(`${apiBaseUrl}/api/services`);
         setServices(data || []);
       } catch (err) {
         console.error('Error fetching services:', err);
@@ -60,8 +62,8 @@ const Services = () => {
               variants={itemVariants}
               whileHover={{ y: -12, boxShadow: '0 30px 60px rgba(59, 130, 246, 0.2)' }}
               className={`p-8 rounded-3xl border transition-all backdrop-blur-md group ${index % 3 === 1
-                  ? 'bg-gradient-to-br from-accent/10 to-accent/5 border-accent/40 md:scale-105'
-                  : 'glass border-white/10 hover:border-accent/40'
+                ? 'bg-gradient-to-br from-accent/10 to-accent/5 border-accent/40 md:scale-105'
+                : 'glass border-white/10 hover:border-accent/40'
                 }`}
             >
               <div className="flex items-start justify-between gap-4 mb-6">

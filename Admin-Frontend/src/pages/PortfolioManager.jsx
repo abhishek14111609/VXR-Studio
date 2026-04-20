@@ -3,6 +3,8 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Plus, Trash2, Edit3, X, Image as ImageIcon } from 'lucide-react';
 
+const API_BASE_URL = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+
 const PortfolioManager = () => {
   const [items, setItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,7 +19,7 @@ const PortfolioManager = () => {
 
   const fetchItems = async () => {
     try {
-      const { data } = await axios.get('http://localhost:5000/api/portfolio');
+      const { data } = await axios.get(`${API_BASE_URL}/api/portfolio`);
       setItems(data);
     } catch (err) {
       console.error(err);
@@ -33,11 +35,11 @@ const PortfolioManager = () => {
     const token = JSON.parse(localStorage.getItem('adminUser'))?.token;
     try {
       if (editingItem) {
-        await axios.put(`http://localhost:5000/api/portfolio/${editingItem._id}`, formData, {
+        await axios.put(`${API_BASE_URL}/api/portfolio/${editingItem._id}`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       } else {
-        await axios.post('http://localhost:5000/api/portfolio', formData, {
+        await axios.post(`${API_BASE_URL}/api/portfolio`, formData, {
           headers: { Authorization: `Bearer ${token}` }
         });
       }
@@ -54,7 +56,7 @@ const PortfolioManager = () => {
     if (window.confirm('Delete this portfolio item?')) {
       const token = JSON.parse(localStorage.getItem('adminUser'))?.token;
       try {
-        await axios.delete(`http://localhost:5000/api/portfolio/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/portfolio/${id}`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         fetchItems();
@@ -85,13 +87,13 @@ const PortfolioManager = () => {
             <div className="aspect-video relative overflow-hidden">
               <img src={item.mediaUrl} alt={item.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <button 
+                <button
                   onClick={() => { setEditingItem(item); setFormData(item); setIsModalOpen(true); }}
                   className="p-3 bg-white text-black rounded-full hover:bg-accent hover:text-white transition-all"
                 >
                   <Edit3 size={20} />
                 </button>
-                <button 
+                <button
                   onClick={() => deleteItem(item._id)}
                   className="p-3 bg-red-500 text-white rounded-full hover:bg-red-600 transition-all"
                 >
@@ -124,7 +126,7 @@ const PortfolioManager = () => {
                 <X size={28} />
               </button>
               <h2 className="text-2xl font-bold mb-8">{editingItem ? 'Edit Project' : 'Add New Project'}</h2>
-              
+
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <label className="block text-sm font-bold text-gray-400 mb-2 uppercase">Project Title</label>
@@ -136,7 +138,7 @@ const PortfolioManager = () => {
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 outline-none focus:border-accent"
                   />
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-bold text-gray-400 mb-2 uppercase">Category</label>

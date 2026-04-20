@@ -1,3 +1,10 @@
 /7D03891B-3647-4245-871F-3264737BA364_1_105_c.pdf
 /GUIDE.md
 /VXR MEDIA HOUSE PACKAGE 1.pdf
+
+# Environment files
+
+
+
+**/.env.local
+**/.env.production

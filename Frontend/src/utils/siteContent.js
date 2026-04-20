@@ -1,0 +1,425 @@
+export const company = {
+    name: 'VXR Media House',
+    shortName: 'VXR',
+    tagline: 'Social-first creative, media, and advertising solutions that convert.',
+    phoneDisplay: '96623 96693',
+    phoneLink: '+919662396693',
+    whatsappNumber: '919662396693',
+    whatsappLink: 'https://wa.me/919662396693',
+    email: 'vxrmediaa@gmail.com',
+    address: '304 B, 3rd Floor, 4 Plus Complex, Opposite Poojara Telecom, Astron Chowk, Rajkot',
+    location: 'Rajkot, Gujarat, India',
+};
+
+export const services = [
+    {
+        title: 'Social Media Management',
+        description: 'Content planning, publishing, and audience growth systems built around your brand voice.',
+        highlights: ['Content calendars', 'Community management', 'Monthly reporting'],
+    },
+    {
+        title: 'Meta Ads Solutions',
+        description: 'Lead-generation and awareness campaigns optimized for reach, conversions, and efficient spend.',
+        highlights: ['Campaign setup', 'Creative testing', 'Performance optimization'],
+    },
+    {
+        title: 'Graphic Designing & Posts',
+        description: 'High-impact visuals, feed designs, and branded post systems that stay consistent everywhere.',
+        highlights: ['Post creatives', 'Brand templates', 'Platform-ready sizing'],
+    },
+    {
+        title: 'Reels & Video Editing',
+        description: 'Short-form edits, hooks, captions, and pacing that keep viewers watching until the end.',
+        highlights: ['Reels editing', 'Motion cuts', 'Subtitle styling'],
+    },
+    {
+        title: 'Advertising & Promotions',
+        description: 'Campaign assets and promotion plans designed to get your offer in front of the right audience.',
+        highlights: ['Launch campaigns', 'Seasonal offers', 'Event promotions'],
+    },
+    {
+        title: 'Digital Marketing',
+        description: 'Cross-channel digital planning focused on visibility, traffic, and measurable business growth.',
+        highlights: ['Growth strategy', 'Campaign planning', 'Analytics insights'],
+    },
+    {
+        title: 'Influencer Marketing',
+        description: 'Creator collaborations that fit your audience, build trust, and amplify your brand reach.',
+        highlights: ['Creator outreach', 'Campaign coordination', 'Content approvals'],
+    },
+    {
+        title: 'Branding that Actually Converts',
+        description: 'Conversion-minded brand identity work that positions your business clearly and memorably.',
+        highlights: ['Brand identity', 'Messaging direction', 'Conversion-focused design'],
+    },
+];
+
+export const featuredServices = services.slice(0, 4);
+
+export const projectTypes = services.map((service) => service.title);
+
+export const pricingPlans = [
+    {
+        serviceTitle: 'Social Media Management',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹5,999',
+                period: '/month',
+                features: [
+                    '3 Posts/week',
+                    'Basic Graphics',
+                    'Engagement Management',
+                    'Monthly Report',
+                    'Basic Strategy',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹12,999',
+                period: '/month',
+                features: [
+                    '5 Posts/week',
+                    'Video Reels',
+                    'Growth Strategy',
+                    'Weekly Report',
+                    'Community Management',
+                    'Ad Support',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹24,999',
+                period: '/month',
+                features: [
+                    'Daily Posts',
+                    'Cinematic Content',
+                    'Ad Management',
+                    '24/7 Support',
+                    'Influencer Campaigns',
+                    'Custom Strategy',
+                    'Performance Optimization',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Meta Ads Solutions',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹9,999',
+                period: '/month',
+                features: [
+                    'Campaign Setup',
+                    '₹20k Ad Budget Management',
+                    'Basic Targeting',
+                    'Weekly Reports',
+                    'Single Platform',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹19,999',
+                period: '/month',
+                features: [
+                    'Campaign Setup & Optimization',
+                    '₹50k Ad Budget Management',
+                    'Advanced Targeting',
+                    'Bi-weekly Reports',
+                    'A/B Testing',
+                    'Multi-Platform',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹39,999',
+                period: '/month',
+                features: [
+                    'Dedicated Account Manager',
+                    '₹100k+ Ad Budget Management',
+                    'Advanced Targeting & Retargeting',
+                    'Daily Optimization',
+                    'Weekly Strategy Calls',
+                    'Custom Reporting',
+                    'Lead Generation Focus',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Graphic Designing & Posts',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹4,999',
+                period: '/month',
+                features: [
+                    '4 Post Designs/week',
+                    'Social Media Templates',
+                    'Brand Guidelines Use',
+                    'Revision: 2 per design',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹9,999',
+                period: '/month',
+                features: [
+                    '8 Post Designs/week',
+                    'Stories & Infographics',
+                    'Custom Templates',
+                    'Revision: 5 per design',
+                    'Feed Aesthetic Planning',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹19,999',
+                period: '/month',
+                features: [
+                    'Unlimited Designs',
+                    'Custom Brand Identity',
+                    '3D & Motion Graphics',
+                    'Unlimited Revisions',
+                    'Priority Support',
+                    'Seasonal Campaigns',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Reels & Video Editing',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹7,999',
+                period: '/reel',
+                features: [
+                    '1 Reel Edit',
+                    'Basic Transitions',
+                    'Color Grading',
+                    'Captions & Music',
+                    'Delivery: 48 hours',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹14,999',
+                period: '/month',
+                features: [
+                    '4 Reels/month',
+                    'Motion Graphics',
+                    'Advanced Editing',
+                    'Trend Integration',
+                    'Weekly Delivery',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹29,999',
+                period: '/month',
+                features: [
+                    'Unlimited Reels',
+                    '4K Quality',
+                    'Cinematic Effects',
+                    'Animation & Graphics',
+                    'Daily Delivery',
+                    'Creative Direction',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Advertising & Promotions',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹8,999',
+                period: '/campaign',
+                features: [
+                    'Campaign Planning',
+                    'Promotional Graphics',
+                    'Limited Timeline',
+                    'Single Channel',
+                    'Basic Analytics',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹17,999',
+                period: '/campaign',
+                features: [
+                    'Multi-Channel Campaign',
+                    'Custom Creatives',
+                    'Duration: Up to 1 month',
+                    'A/B Testing',
+                    'Detailed Analytics',
+                    'Seasonal Support',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹34,999',
+                period: '/campaign',
+                features: [
+                    'End-to-End Campaign',
+                    'Unlimited Creatives',
+                    'Custom Duration',
+                    'Advanced Analytics',
+                    'Retargeting Strategy',
+                    'Dedicated Support',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Digital Marketing',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹6,999',
+                period: '/month',
+                features: [
+                    'SEO Basics',
+                    'Keyword Research',
+                    'Monthly Report',
+                    'Single Channel',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹14,999',
+                period: '/month',
+                features: [
+                    'SEO + SEM Strategy',
+                    'Content Optimization',
+                    'Weekly Updates',
+                    'Multi-Channel',
+                    'Competitor Analysis',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹29,999',
+                period: '/month',
+                features: [
+                    'Full Digital Strategy',
+                    'Advanced SEO',
+                    'Content Calendar',
+                    'Daily Optimization',
+                    'Custom Analytics',
+                    'Dedicated Strategist',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Influencer Marketing',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹15,999',
+                period: '/campaign',
+                features: [
+                    'Micro Influencer',
+                    '1 Post Only',
+                    'Campaign Coordination',
+                    'Basic Reporting',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹34,999',
+                period: '/campaign',
+                features: [
+                    'Mid-Tier Influencers',
+                    'Multiple Posts',
+                    'Content Approval',
+                    'Detailed Analytics',
+                    'Campaign Timeline Support',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹64,999',
+                period: '/campaign',
+                features: [
+                    'Top-Tier Influencers',
+                    'Full Campaign Support',
+                    'Unlimited Posts',
+                    'Story Links & Swipe-ups',
+                    'Performance Optimization',
+                    'Dedicated Manager',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+    {
+        serviceTitle: 'Branding that Actually Converts',
+        tiers: [
+            {
+                name: 'Starter',
+                price: '₹19,999',
+                period: 'one-time',
+                features: [
+                    'Logo Design',
+                    'Color Palette',
+                    'Basic Brand Guidelines',
+                    'Single Format',
+                ],
+                highlight: false,
+            },
+            {
+                name: 'Professional',
+                price: '₹39,999',
+                period: 'one-time',
+                features: [
+                    'Complete Brand Identity',
+                    'Logo + Variants',
+                    'Typography Guide',
+                    'Brand Voice Document',
+                    'Multi-Format Assets',
+                    '2 Revision Rounds',
+                ],
+                highlight: true,
+            },
+            {
+                name: 'Elite',
+                price: '₹79,999',
+                period: 'one-time',
+                features: [
+                    'Full Brand Strategy',
+                    'Market Research',
+                    'Complete Guidelines',
+                    'Website Brand Template',
+                    'All Marketing Collateral',
+                    'Unlimited Revisions',
+                    '3 Months Support',
+                ],
+                highlight: false,
+            },
+        ],
+    },
+];

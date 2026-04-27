@@ -219,7 +219,7 @@ const About = () => {
           <div className="absolute -bottom-24 left-8 h-56 w-56 rounded-full bg-purple-500/10 blur-3xl" />
 
           <div className="relative z-10">
-            <h3 className="text-4xl md:text-5xl font-bold text-center mb-3">Our Team</h3>
+            <h3 className="text-4xl md:text-5xl font-bold text-center mb-3">Our Core Team</h3>
             <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
               The people behind strategy, storytelling, and execution.
             </p>
@@ -284,6 +284,16 @@ const About = () => {
                 ))}
               </motion.div>
             )}
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="text-center text-gray-400 text-sm md:text-base mt-10 tracking-wide"
+            >
+              And many more talented minds working behind the scenes.
+            </motion.p>
           </div>
         </motion.section>
       </div>

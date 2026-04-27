@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send, Phone, Mail, MapPin, CircleCheck, MessageCircle, ArrowRight } from 'lucide-react';
+import { Send, Phone, Mail, MapPin, MessageCircle, ArrowRight, Instagram, Facebook, Linkedin, Youtube, Twitter, Hash } from 'lucide-react';
 import axios from 'axios';
 import { fadeInUp, fadeInLeft, fadeInRight } from '../utils/animations';
 
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
 const leadEndpoint = `${apiBaseUrl}/api/leads`;
+
+const normalizeUrl = (url) => {
+  if (!url) return '';
+  return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+};
 
 const Contact = () => {
   const [company, setCompany] = useState(null);
@@ -20,6 +25,15 @@ const Contact = () => {
   });
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
+
+  const socialItems = [
+    { key: 'instagram', label: 'Instagram', icon: <Instagram size={20} /> },
+    { key: 'facebook', label: 'Facebook', icon: <Facebook size={20} /> },
+    { key: 'threads', label: 'Threads', icon: <Hash size={20} /> },
+    { key: 'linkedin', label: 'LinkedIn', icon: <Linkedin size={20} /> },
+    { key: 'youtube', label: 'YouTube', icon: <Youtube size={20} /> },
+    { key: 'twitter', label: 'Twitter/X', icon: <Twitter size={20} /> },
+  ];
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -102,7 +116,7 @@ const Contact = () => {
           >
             <div className="space-y-8">
               <div className="flex items-start gap-6 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 flex items-center justify-center text-accent group-hover:from-accent/30 group-hover:to-accent/10 transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-accent/20 to-accent/5 flex items-center justify-center text-accent group-hover:from-accent/30 group-hover:to-accent/10 transition-all">
                   <Phone size={28} />
                 </div>
                 <div>
@@ -113,7 +127,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-6 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 flex items-center justify-center text-purple-400 group-hover:from-purple-500/30 group-hover:to-purple-500/10 transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-purple-500/20 to-purple-500/5 flex items-center justify-center text-purple-400 group-hover:from-purple-500/30 group-hover:to-purple-500/10 transition-all">
                   <Mail size={28} />
                 </div>
                 <div>
@@ -124,7 +138,7 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-6 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-500/5 flex items-center justify-center text-green-400 group-hover:from-green-500/30 group-hover:to-green-500/10 transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-green-500/20 to-green-500/5 flex items-center justify-center text-green-400 group-hover:from-green-500/30 group-hover:to-green-500/10 transition-all">
                   <MessageCircle size={28} />
                 </div>
                 <div>
@@ -137,13 +151,41 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start gap-6 group">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-500/5 flex items-center justify-center text-orange-400 group-hover:from-orange-500/30 group-hover:to-orange-500/10 transition-all">
+                <div className="w-16 h-16 rounded-2xl bg-linear-to-br from-orange-500/20 to-orange-500/5 flex items-center justify-center text-orange-400 group-hover:from-orange-500/30 group-hover:to-orange-500/10 transition-all">
                   <MapPin size={28} />
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-2">Studio Location</h4>
                   <p className="text-lg font-medium">{company?.address || 'N/A'}</p>
                   <p className="text-sm text-gray-500 mt-1">{company?.location || 'N/A'}</p>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-white/10">
+                <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">Follow Us</h4>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {socialItems.map((item) => {
+                    const href = normalizeUrl(company?.socialLinks?.[item.key]);
+                    const isEnabled = Boolean(href);
+
+                    return (
+                      <a
+                        key={item.key}
+                        href={href || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={item.label}
+                        onClick={(e) => {
+                          if (!isEnabled) e.preventDefault();
+                        }}
+                        className={`rounded-xl border px-4 py-3 flex items-center gap-2 transition-all ${isEnabled ? 'border-white/20 text-gray-200 hover:border-accent/40 hover:text-accent' : 'border-white/10 text-gray-600 cursor-not-allowed'}`}
+                        title={isEnabled ? item.label : `${item.label} link not set`}
+                      >
+                        {item.icon}
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </a>
+                    );
+                  })}
                 </div>
               </div>
             </div>

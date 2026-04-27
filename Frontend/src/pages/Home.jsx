@@ -24,7 +24,7 @@ const Home = () => {
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-creative-agency-office-working-space-40348-large.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/95" />
+          <div className="absolute inset-0 bg-linear-to-b from-black/90 via-black/50 to-black/95" />
         </div>
 
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -67,7 +67,7 @@ const Home = () => {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="flex flex-col md:flex-row items-center justify-center gap-6 mb-12"
             >
-              <Link to="/services" className="group px-10 py-5 bg-gradient-to-r from-accent to-blue-600 text-white font-bold rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105">
+              <Link to="/services" className="group px-10 py-5 bg-linear-to-r from-accent to-blue-600 text-white font-bold rounded-full flex items-center gap-2 hover:shadow-lg hover:shadow-accent/50 transition-all transform hover:scale-105">
                 VIEW SERVICES <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link to="/contact" className="px-10 py-5 glass text-white font-bold rounded-full border border-white/40 hover:border-white/80 hover:bg-white/10 transition-all">
@@ -138,7 +138,7 @@ const Home = () => {
           >
             <p className="text-accent uppercase tracking-[0.5em] text-xs md:text-sm font-bold mb-4">Featured Services</p>
             <h2 className="text-4xl md:text-6xl font-bold mb-6">WHAT WE DO BEST</h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-accent to-purple-600 mx-auto" />
+            <div className="h-1 w-24 bg-linear-to-r from-accent to-purple-600 mx-auto" />
           </motion.div>
 
           <motion.div
@@ -179,7 +179,7 @@ const Home = () => {
       </section>
 
       {/* Stats/Showcase section */}
-      <section className="py-24 bg-gradient-to-b from-accent/5 to-accent/10 relative overflow-hidden border-y border-white/5">
+      <section className="py-24 bg-linear-to-b from-accent/5 to-accent/10 relative overflow-hidden border-y border-white/5">
         <div className="container mx-auto px-6 text-center">
           <motion.div
             {...fadeInUp}
@@ -196,28 +196,28 @@ const Home = () => {
             className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
           >
             <motion.div variants={itemVariants} className="group">
-              <div className="mb-4 inline-flex p-4 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 group-hover:from-accent/30 group-hover:to-accent/10 transition-all">
+              <div className="mb-4 inline-flex p-4 rounded-2xl bg-linear-to-br from-accent/20 to-accent/5 group-hover:from-accent/30 group-hover:to-accent/10 transition-all">
                 <TrendingUp size={28} className="text-accent" />
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-2"><Counter end={8} /></h2>
+              <h2 className="text-4xl md:text-5xl font-bold mb-2"><Counter end={8} />+</h2>
               <p className="text-gray-400 uppercase tracking-widest text-sm">Core Services</p>
             </motion.div>
             <motion.div variants={itemVariants} className="group">
-              <div className="mb-4 inline-flex p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-purple-500/5 group-hover:from-purple-500/30 group-hover:to-purple-500/10 transition-all">
+              <div className="mb-4 inline-flex p-4 rounded-2xl bg-linear-to-br from-purple-500/20 to-purple-500/5 group-hover:from-purple-500/30 group-hover:to-purple-500/10 transition-all">
                 <Zap size={28} className="text-purple-400" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-2">Meta+</h2>
               <p className="text-gray-400 uppercase tracking-widest text-sm">Ads & Content</p>
             </motion.div>
             <motion.div variants={itemVariants} className="group">
-              <div className="mb-4 inline-flex p-4 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-500/5 group-hover:from-green-500/30 group-hover:to-green-500/10 transition-all">
+              <div className="mb-4 inline-flex p-4 rounded-2xl bg-linear-to-br from-green-500/20 to-green-500/5 group-hover:from-green-500/30 group-hover:to-green-500/10 transition-all">
                 <CheckCircle2 size={28} className="text-green-400" />
               </div>
               <h2 className="text-3xl md:text-5xl font-bold mb-2">100%</h2>
               <p className="text-gray-400 uppercase tracking-widest text-sm">Success Focused</p>
             </motion.div>
             <motion.div variants={itemVariants} className="group">
-              <div className="mb-4 inline-flex p-4 rounded-2xl bg-gradient-to-br from-orange-500/20 to-orange-500/5 group-hover:from-orange-500/30 group-hover:to-orange-500/10 transition-all">
+              <div className="mb-4 inline-flex p-4 rounded-2xl bg-linear-to-br from-orange-500/20 to-orange-500/5 group-hover:from-orange-500/30 group-hover:to-orange-500/10 transition-all">
                 <Users size={28} className="text-orange-400" />
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-2">24h</h2>

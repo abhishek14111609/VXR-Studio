@@ -5,6 +5,22 @@ const benefitSchema = new mongoose.Schema({
     description: String
 }, { _id: false });
 
+const teamMemberSchema = new mongoose.Schema({
+    name: String,
+    role: String,
+    image: String,
+    bio: String
+}, { _id: false });
+
+const socialLinksSchema = new mongoose.Schema({
+    instagram: String,
+    facebook: String,
+    threads: String,
+    linkedin: String,
+    youtube: String,
+    twitter: String
+}, { _id: false });
+
 const companySchema = new mongoose.Schema({
     companyName: { type: String, default: 'VXR Media House' },
     tagline: String,
@@ -15,7 +31,9 @@ const companySchema = new mongoose.Schema({
     whatsapp: String,
     address: String,
     location: String,
-    benefits: [benefitSchema]
+    benefits: [benefitSchema],
+    teamMembers: [teamMemberSchema],
+    socialLinks: socialLinksSchema
 }, { timestamps: true });
 
 module.exports = mongoose.model('Company', companySchema);

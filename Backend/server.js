@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const path = require('path');
 
 // Import Routes
 const authRoutes = require('./routes/authRoutes');
@@ -10,13 +11,20 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const leadRoutes = require('./routes/leadRoutes');
 const testimonialRoutes = require('./routes/testimonialRoutes');
 const companyRoutes = require('./routes/companyRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
 
-const allowedOrigins = (process.env.CORS_ORIGIN || '')
+const envAllowedOrigins = (process.env.CORS_ORIGIN || '')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
+
+const devOrigins = ['http://localhost:5173', 'http://localhost:5174'];
+const allowedOrigins = Array.from(new Set([
+  ...envAllowedOrigins,
+  ...(process.env.NODE_ENV === 'production' ? [] : devOrigins),
+]));
 
 // Middleware
 app.use(cors({
@@ -32,6 +40,7 @@ app.use(cors({
   }
 }));
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Database Connection
 mongoose.connect(process.env.MONGODB_URI)
@@ -45,6 +54,7 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/leads', leadRoutes);
 app.use('/api/testimonials', testimonialRoutes);
 app.use('/api/company', companyRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Base Route
 app.get('/', (req, res) => {

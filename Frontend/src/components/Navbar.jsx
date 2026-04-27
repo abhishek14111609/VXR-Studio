@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-4 glass' : 'py-6 bg-transparent'}`}>
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <BrandMark compact />
+        <BrandMark compact variant="wordmark" />
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8 items-center">

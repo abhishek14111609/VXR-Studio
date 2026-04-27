@@ -25,6 +25,27 @@ const defaultBenefits = [
   },
 ];
 
+const defaultTeamMembers = [
+  {
+    name: 'Aarav Patel',
+    role: 'Creative Director',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80',
+    bio: 'Leads brand storytelling and visual direction across campaigns.',
+  },
+  {
+    name: 'Meera Shah',
+    role: 'Performance Marketer',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80',
+    bio: 'Builds and optimizes paid campaigns focused on measurable growth.',
+  },
+  {
+    name: 'Rohan Desai',
+    role: 'Video Strategist',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80',
+    bio: 'Designs short-form content systems that improve retention and engagement.',
+  },
+];
+
 const About = () => {
   const [company, setCompany] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -53,6 +74,21 @@ const About = () => {
   }
 
   const benefits = company?.benefits?.length ? company.benefits : defaultBenefits;
+  const teamMembers = company?.teamMembers?.length ? company.teamMembers : defaultTeamMembers;
+  const founderIndex = teamMembers.findIndex((member) => /founder|ceo/i.test(member?.role || ''));
+  const founderMember = teamMembers[founderIndex >= 0 ? founderIndex : 0];
+  const coreTeam = teamMembers.filter((_, idx) => idx !== (founderIndex >= 0 ? founderIndex : 0));
+
+  const resolveImageUrl = (image) => {
+    if (!image) return '';
+    if (image.startsWith('http://') || image.startsWith('https://') || image.startsWith('data:')) {
+      return image;
+    }
+    if (image.startsWith('/')) {
+      return `${apiBaseUrl}${image}`;
+    }
+    return image;
+  };
 
   return (
     <div className="pt-32 pb-20">
@@ -90,7 +126,7 @@ const About = () => {
               className="flex gap-12"
             >
               <div className="group">
-                <h4 className="text-4xl font-bold mb-2 text-accent group-hover:scale-110 transition-transform">8</h4>
+                <h4 className="text-4xl font-bold mb-2 text-accent group-hover:scale-110 transition-transform">8+</h4>
                 <p className="text-gray-500 uppercase tracking-widest text-xs">Core Services</p>
               </div>
               <div className="group">
@@ -105,14 +141,14 @@ const About = () => {
           </motion.div>
           <motion.div
             {...fadeInRight}
-            className="aspect-4/5 bg-gradient-to-br from-accent/20 to-purple-600/20 rounded-3xl overflow-hidden relative group border border-white/10"
+            className="aspect-4/5 bg-linear-to-br from-accent/20 to-purple-600/20 rounded-3xl overflow-hidden relative group border border-white/10"
           >
             <img
               src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
               alt="Team working"
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
           </motion.div>
         </div>
 
@@ -177,6 +213,79 @@ const About = () => {
             })}
           </motion.div>
         </motion.div>
+
+        <motion.section {...fadeInUp} className="mb-12 relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-b from-white/5 via-transparent to-transparent px-6 py-14 md:px-10">
+          <div className="absolute -top-28 right-8 h-56 w-56 rounded-full bg-accent/15 blur-3xl" />
+          <div className="absolute -bottom-24 left-8 h-56 w-56 rounded-full bg-purple-500/10 blur-3xl" />
+
+          <div className="relative z-10">
+            <h3 className="text-4xl md:text-5xl font-bold text-center mb-3">Our Team</h3>
+            <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+              The people behind strategy, storytelling, and execution.
+            </p>
+
+            {founderMember && (
+              <motion.div
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                className="max-w-5xl mx-auto mb-12"
+              >
+                <div className="rounded-3xl overflow-hidden border border-accent/30 bg-black/40 shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_30px_60px_rgba(0,0,0,0.45)]">
+                  <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div className="relative min-h-104 lg:min-h-120">
+                      <img
+                        src={resolveImageUrl(founderMember.image)}
+                        alt={founderMember.name || 'Founder'}
+                        className="absolute inset-0 w-full h-full object-cover object-top"
+                      />
+                      <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
+                    </div>
+
+                    <div className="p-8 md:p-10 flex flex-col justify-center">
+                      <p className="text-xs uppercase tracking-[0.25em] text-accent mb-4">Founder Spotlight</p>
+                      <h4 className="text-3xl md:text-4xl font-black tracking-tight mb-3 uppercase">{founderMember.name}</h4>
+                      <p className="text-accent text-sm md:text-base uppercase tracking-[0.2em] mb-6">{founderMember.role}</p>
+                      <p className="text-gray-300 text-lg leading-relaxed">{founderMember.bio}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {coreTeam.length > 0 && (
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '0px 0px -100px 0px' }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                {coreTeam.map((member, idx) => (
+                  <motion.article
+                    key={`${member.name || 'member'}-${idx}`}
+                    variants={itemVariants}
+                    className="rounded-2xl border border-white/10 bg-black/40 overflow-hidden group hover:border-accent/40 transition-all"
+                  >
+                    <div className="aspect-4/5 overflow-hidden bg-black/30">
+                      <img
+                        src={resolveImageUrl(member.image)}
+                        alt={member.name || 'Team member'}
+                        className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h4 className="text-2xl font-bold mb-1 uppercase">{member.name}</h4>
+                      <p className="text-accent text-sm uppercase tracking-[0.18em] mb-3">{member.role}</p>
+                      <p className="text-gray-400 text-sm leading-relaxed">{member.bio}</p>
+                    </div>
+                  </motion.article>
+                ))}
+              </motion.div>
+            )}
+          </div>
+        </motion.section>
       </div>
     </div>
   );

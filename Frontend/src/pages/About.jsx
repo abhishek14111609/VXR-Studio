@@ -81,8 +81,12 @@ const About = () => {
 
   const resolveImageUrl = (image) => {
     if (!image) return '';
-    if (image.startsWith('http://') || image.startsWith('https://') || image.startsWith('data:')) {
+    if (image.startsWith('https://') || image.startsWith('data:')) {
       return image;
+    }
+    // Convert HTTP to HTTPS for live site
+    if (image.startsWith('http://')) {
+      return image.replace('http://', 'https://');
     }
     if (image.startsWith('/')) {
       return `${apiBaseUrl}${image}`;

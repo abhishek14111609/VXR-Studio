@@ -43,7 +43,9 @@ const handleTeamImageUpload = (req, res) => {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        const imageUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+        const protocol = req.get('x-forwarded-proto') || req.protocol;
+        const host = req.get('x-forwarded-host') || req.get('host');
+        const imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
         return res.status(201).json({ imageUrl });
     });
 };

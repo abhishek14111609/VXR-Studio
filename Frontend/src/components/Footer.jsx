@@ -5,7 +5,7 @@ import axios from 'axios';
 import BrandMark from './BrandMark';
 import { company } from '../utils/siteContent';
 
-const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
 const normalizeUrl = (url) => {
   if (!url) return '';

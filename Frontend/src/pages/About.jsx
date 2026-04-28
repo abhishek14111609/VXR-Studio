@@ -4,7 +4,7 @@ import { CheckCircle2, Target, Zap, Users, TrendingUp } from 'lucide-react';
 import axios from 'axios';
 import { fadeInUp, fadeInLeft, fadeInRight, containerVariants, itemVariants } from '../utils/animations';
 
-const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
 const defaultBenefits = [
   {

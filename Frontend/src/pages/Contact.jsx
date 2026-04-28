@@ -4,7 +4,7 @@ import { Send, Phone, Mail, MapPin, MessageCircle, ArrowRight, Instagram, Facebo
 import axios from 'axios';
 import { fadeInUp, fadeInLeft, fadeInRight } from '../utils/animations';
 
-const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 const leadEndpoint = `${apiBaseUrl}/api/leads`;
 
 const normalizeUrl = (url) => {

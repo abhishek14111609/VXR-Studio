@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const categories = ['All', 'Reels', 'Ads', 'Photography', 'Branding'];
-const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');

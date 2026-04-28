@@ -4,7 +4,7 @@ import { CircleCheck, ArrowRight, Zap } from 'lucide-react';
 import { fadeInUp, containerVariants, itemVariants } from '../utils/animations';
 import axios from 'axios';
 
-const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
 const Pricing = () => {
     const [expandedService, setExpandedService] = useState(0);

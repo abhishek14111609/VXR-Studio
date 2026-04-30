@@ -51,6 +51,7 @@ const About = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "About Us | The Vision Behind VXR Media House";
     const fetchCompanyData = async () => {
       try {
         const { data } = await axios.get(`${apiBaseUrl}/api/company`);

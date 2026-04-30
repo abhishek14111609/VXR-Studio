@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://vxrmedia.in/</loc>
+    <lastmod>2026-04-30</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://vxrmedia.in/portfolio</loc>
+    <lastmod>2026-04-30</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://vxrmedia.in/services</loc>
+    <lastmod>2026-04-30</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://vxrmedia.in/about</loc>
+    <lastmod>2026-04-30</lastmod>
+    <priority>0.70</priority>
+  </url>
+  <url>
+    <loc>https://vxrmedia.in/contact</loc>
+    <lastmod>2026-04-30</lastmod>
+    <priority>0.70</priority>
+  </url>
+</urlset>

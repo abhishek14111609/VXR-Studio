@@ -13,6 +13,7 @@ const Pricing = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        document.title = "Pricing Plans | Affordable Growth for Brands | VXR Media House";
         fetchData();
     }, []);
 

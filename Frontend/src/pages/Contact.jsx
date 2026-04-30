@@ -40,6 +40,7 @@ const Contact = () => {
   };
 
   useEffect(() => {
+    document.title = "Contact Us | Start Your Project with VXR Media House";
     const fetchContactData = async () => {
       try {
         const [companyRes, servicesRes] = await Promise.all([

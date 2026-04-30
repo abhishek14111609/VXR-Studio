@@ -12,6 +12,7 @@ const Services = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Premium Services | Social Media, Ads & Branding | VXR Media House";
     const fetchServices = async () => {
       try {
         const { data } = await axios.get(`${apiBaseUrl}/api/services`);

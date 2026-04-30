@@ -14,6 +14,7 @@ const Portfolio = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.title = "Our Portfolio | Cinematic Content & Campaigns | VXR Media House";
     fetchPortfolio();
   }, []);
 

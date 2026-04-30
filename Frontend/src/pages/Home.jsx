@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Phone, Mail, MapPin, Sparkles, CheckCircle2, TrendingUp, Zap, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,9 @@ import Counter from '../components/Counter';
 import { fadeInUp, fadeInLeft, fadeInRight, stagger, containerVariants, itemVariants } from '../utils/animations';
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "VXR Media House | Content Creation Agency";
+  }, []);
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}

@@ -44,6 +44,10 @@ const Portfolio = () => {
     }
   };
 
+  useEffect(() => {
+    fetchPortfolio();
+  }, []);
+
   if (loading) {
     return (
       <div className="pt-32 pb-20 flex items-center justify-center min-h-screen">

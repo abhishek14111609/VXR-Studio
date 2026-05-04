@@ -4,8 +4,7 @@
     "description": "Premium content creation, social media marketing, and digital marketing agency",
     "start_url": "https://vxrmedia.in/",
     "scope": "https://vxrmedia.in/",
-    "display": "standalone",
-    "orientation": "portrait-primary",
+    "display": "browser",
     "background_color": "#000000",
     "theme_color": "#1a1a1a",
     "icons": [

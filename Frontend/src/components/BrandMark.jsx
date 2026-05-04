@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/img/logo.jpeg';
-import logoWordmark from '../assets/img/logo1.JPEG';
+import logoWordmark from '../assets/img/logo1-removebg-preview.png';
 
 const BrandMark = ({ to = '/', className = '', compact = false, variant = 'default' }) => {
     if (variant === 'wordmark') {
@@ -10,7 +10,7 @@ const BrandMark = ({ to = '/', className = '', compact = false, variant = 'defau
                 <img
                     src={logoWordmark}
                     alt="VXR Media House"
-                    className={`${compact ? 'h-11 md:h-13 max-w-56 md:max-w-72' : 'h-16 md:h-18 max-w-80'} w-auto object-contain rounded-lg drop-shadow-[0_8px_18px_rgba(0,0,0,0.45)]`}
+                    className={`${compact ? 'h-12 md:h-16' : 'h-20 md:h-24'} w-auto object-contain filter brightness-0 invert`}
                 />
             </Link>
         );

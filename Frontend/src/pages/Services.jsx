@@ -4,6 +4,7 @@ import { ArrowRight, Zap } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { fadeInUp, containerVariants, itemVariants } from '../utils/animations';
+import { useSEO, useStructuredData } from '../hooks/useSEO';
 
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
@@ -11,8 +12,26 @@ const Services = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // SEO Meta Tags
+  useSEO({
+    title: 'Premium Services | Social Media, Meta Ads & Branding | VXR Media House',
+    description: 'Explore our comprehensive digital marketing services: social media management, Meta ads, graphic design, video editing, reels, influencer marketing & branding in Rajkot.',
+    keywords: 'digital marketing services, social media management, Meta ads, graphic design, video editing, reels editing, branding services, content creation services, Rajkot',
+    image: 'https://vxrmedia.in/og-image.jpg',
+    url: 'https://vxrmedia.in/services',
+    type: 'website',
+  });
+
+  // Services page structured data
+  useStructuredData({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Digital Marketing Services",
+    "description": "Professional digital marketing and content creation services",
+    "url": "https://vxrmedia.in/services"
+  });
+
   useEffect(() => {
-    document.title = "Premium Services | Social Media, Ads & Branding | VXR Media House";
     const fetchServices = async () => {
       try {
         const { data } = await axios.get(`${apiBaseUrl}/api/services`);

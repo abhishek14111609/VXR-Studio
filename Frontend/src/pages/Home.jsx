@@ -6,11 +6,33 @@ import { company, featuredServices } from '../utils/siteContent';
 import BrandMark from '../components/BrandMark';
 import Counter from '../components/Counter';
 import { fadeInUp, fadeInLeft, fadeInRight, stagger, containerVariants, itemVariants } from '../utils/animations';
+import { useSEO, useStructuredData } from '../hooks/useSEO';
 
 const Home = () => {
-  useEffect(() => {
-    document.title = "VXR Media House | Content Creation Agency";
-  }, []);
+  // SEO Meta Tags
+  useSEO({
+    title: 'VXR Media House | Cinematic Content Creation & Digital Marketing in Rajkot',
+    description: 'Professional content creation agency offering social media marketing, Meta ads, graphic design, video editing & strategic branding for premium brands in Rajkot, Gujarat.',
+    keywords: 'content creation, social media marketing, Meta ads, graphic design, video editing, branding agency, digital marketing, Rajkot, content agency, creative agency',
+    image: 'https://vxrmedia.in/og-image.jpg',
+    type: 'website',
+  });
+
+  // Homepage structured data
+  useStructuredData({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://vxrmedia.in/#webpage",
+    "url": "https://vxrmedia.in/",
+    "name": "VXR Media House - Premium Content Creation Agency",
+    "description": "Professional content creation, social media marketing, Meta ads, and strategic branding services.",
+    "isPartOf": {
+      "@id": "https://vxrmedia.in/#website"
+    },
+    "publisher": {
+      "@id": "https://vxrmedia.in/#organization"
+    }
+  });
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}

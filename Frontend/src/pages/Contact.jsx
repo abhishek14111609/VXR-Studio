@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Send, Phone, Mail, MapPin, MessageCircle, ArrowRight, Instagram, Facebook, Linkedin, Youtube, Twitter, Hash } from 'lucide-react';
 import axios from 'axios';
 import { fadeInUp, fadeInLeft, fadeInRight } from '../utils/animations';
+import { useSEO, useStructuredData } from '../hooks/useSEO';
 
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 const leadEndpoint = `${apiBaseUrl}/api/leads`;
@@ -26,6 +27,29 @@ const Contact = () => {
   const [status, setStatus] = useState({ type: '', message: '' });
   const [loading, setLoading] = useState(false);
 
+  // SEO Meta Tags
+  useSEO({
+    title: 'Contact Us | Get in Touch with VXR Media House',
+    description: 'Ready to grow your brand? Contact VXR Media House for digital marketing, content creation, and branding services in Rajkot. Call +91 96623 96693 or fill the form.',
+    keywords: 'contact us, get in touch, digital marketing inquiry, content creation, Rajkot contact, booking, project inquiry',
+    image: 'https://vxrmedia.in/og-image.jpg',
+    url: 'https://vxrmedia.in/contact',
+    type: 'website',
+  });
+
+  // Contact page structured data
+  useStructuredData({
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact VXR Media House",
+    "description": "Get in touch with our team",
+    "url": "https://vxrmedia.in/contact",
+    "mainEntity": {
+      "@type": "Organization",
+      "@id": "https://vxrmedia.in/#organization"
+    }
+  });
+
   const socialItems = [
     { key: 'instagram', label: 'Instagram', icon: <Instagram size={20} /> },
     { key: 'facebook', label: 'Facebook', icon: <Facebook size={20} /> },
@@ -40,7 +64,6 @@ const Contact = () => {
   };
 
   useEffect(() => {
-    document.title = "Contact Us | Start Your Project with VXR Media House";
     const fetchContactData = async () => {
       try {
         const [companyRes, servicesRes] = await Promise.all([

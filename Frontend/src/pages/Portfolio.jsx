@@ -3,6 +3,7 @@ import { X, CirclePlay } from 'lucide-react';
 import { containerVariants, itemVariants } from '../utils/animations';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useSEO, useStructuredData } from '../hooks/useSEO';
 
 const categories = ['All', 'Reels', 'Ads', 'Photography', 'Branding'];
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
@@ -13,10 +14,24 @@ const Portfolio = () => {
   const [portfolioItems, setPortfolioItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    document.title = "Our Portfolio | Cinematic Content & Campaigns | VXR Media House";
-    fetchPortfolio();
-  }, []);
+  // SEO Meta Tags
+  useSEO({
+    title: 'Portfolio | Our Cinematic Content & Campaigns | VXR Media House',
+    description: 'Explore our portfolio showcasing high-impact reels, ads, photography, and branding projects for premium brands in Rajkot. Cinematic content creation & digital campaigns.',
+    keywords: 'portfolio, case studies, video reels, advertising campaigns, branding projects, content portfolio, social media content, Rajkot creative agency',
+    image: 'https://vxrmedia.in/og-image.jpg',
+    url: 'https://vxrmedia.in/portfolio',
+    type: 'website',
+  });
+
+  // Portfolio page structured data
+  useStructuredData({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Portfolio - VXR Media House",
+    "description": "Showcase of our cinematic content creation and digital campaigns",
+    "url": "https://vxrmedia.in/portfolio"
+  });
 
   const fetchPortfolio = async () => {
     try {

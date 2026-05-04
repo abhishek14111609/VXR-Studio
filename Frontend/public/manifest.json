@@ -1,0 +1,64 @@
+{
+    "name": "VXR Media House",
+    "short_name": "VXR Media",
+    "description": "Premium content creation, social media marketing, and digital marketing agency",
+    "start_url": "https://vxrmedia.in/",
+    "scope": "https://vxrmedia.in/",
+    "display": "standalone",
+    "orientation": "portrait-primary",
+    "background_color": "#000000",
+    "theme_color": "#1a1a1a",
+    "icons": [
+        {
+            "src": "/logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "maskable"
+        }
+    ],
+    "categories": [
+        "business",
+        "productivity"
+    ],
+    "screenshots": [
+        {
+            "src": "/og-image.jpg",
+            "sizes": "540x720",
+            "type": "image/jpeg"
+        },
+        {
+            "src": "/og-image.jpg",
+            "sizes": "1080x1440",
+            "type": "image/jpeg"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Services",
+            "url": "https://vxrmedia.in/services",
+            "icons": []
+        },
+        {
+            "name": "Portfolio",
+            "url": "https://vxrmedia.in/portfolio",
+            "icons": []
+        },
+        {
+            "name": "Contact",
+            "url": "https://vxrmedia.in/contact",
+            "icons": []
+        }
+    ]
+}

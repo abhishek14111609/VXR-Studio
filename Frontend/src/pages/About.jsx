@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Target, Zap, Users, TrendingUp } from 'lucide-react';
 import axios from 'axios';
 import { fadeInUp, fadeInLeft, fadeInRight, containerVariants, itemVariants } from '../utils/animations';
+import { useSEO, useStructuredData } from '../hooks/useSEO';
 
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
@@ -50,8 +51,26 @@ const About = () => {
   const [company, setCompany] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  // SEO Meta Tags
+  useSEO({
+    title: 'About VXR Media House | Your Digital Growth Partner in Rajkot',
+    description: 'Discover the story of VXR Media House. A team of creative strategists building brands through cinematic content creation and data-driven digital marketing in Rajkot, Gujarat.',
+    keywords: 'about us, creative agency, digital marketing team, content creators, branding experts, Rajkot, mission vision',
+    image: 'https://vxrmedia.in/og-image.jpg',
+    url: 'https://vxrmedia.in/about',
+    type: 'website',
+  });
+
+  // About page structured data
+  useStructuredData({
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About VXR Media House",
+    "description": "Learn about our mission, vision, and team",
+    "url": "https://vxrmedia.in/about"
+  });
+
   useEffect(() => {
-    document.title = "About Us | The Vision Behind VXR Media House";
     const fetchCompanyData = async () => {
       try {
         const { data } = await axios.get(`${apiBaseUrl}/api/company`);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CircleCheck, ArrowRight, Zap } from 'lucide-react';
 import { fadeInUp, containerVariants, itemVariants } from '../utils/animations';
+import { useSEO, useStructuredData } from '../hooks/useSEO';
 import axios from 'axios';
 
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
@@ -12,8 +13,26 @@ const Pricing = () => {
     const [company, setCompany] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // SEO Meta Tags
+    useSEO({
+        title: 'Affordable Pricing Plans | Social Media, Ads & Content | VXR Media House',
+        description: 'Transparent, scalable pricing for social media management, Meta ads, graphic design, video editing & branding. Starter to Elite plans starting from ₹5,999/month.',
+        keywords: 'pricing plans, affordable rates, social media pricing, digital marketing costs, content creation pricing, video editing rates, Rajkot',
+        image: 'https://vxrmedia.in/og-image.jpg',
+        url: 'https://vxrmedia.in/pricing',
+        type: 'website',
+    });
+
+    // Pricing page structured data
+    useStructuredData({
+        "@context": "https://schema.org",
+        "@type": "PricingPage",
+        "name": "Pricing Plans",
+        "description": "Flexible pricing plans for digital marketing services",
+        "url": "https://vxrmedia.in/pricing"
+    });
+
     useEffect(() => {
-        document.title = "Pricing Plans | Affordable Growth for Brands | VXR Media House";
         fetchData();
     }, []);
 

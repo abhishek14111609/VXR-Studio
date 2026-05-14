@@ -21,7 +21,7 @@ const Contact = () => {
     email: '',
     phone: '',
     projectType: '',
-    budget: '$1k - $5k',
+    budget: '₹5,000 - ₹25,000',
     message: ''
   });
   const [status, setStatus] = useState({ type: '', message: '' });
@@ -111,7 +111,7 @@ const Contact = () => {
           email: '',
           phone: '',
           projectType: projectTypes[0] || 'General Inquiry',
-          budget: '$1k - $5k',
+          budget: '₹5,000 - ₹25,000',
           message: ''
         });
       }
@@ -269,10 +269,10 @@ const Contact = () => {
                     onChange={handleChange}
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 focus:border-accent outline-none transition-all appearance-none"
                   >
-                    <option className="bg-black">$1k - $5k</option>
-                    <option className="bg-black">$5k - $15k</option>
-                    <option className="bg-black">$15k - $50k</option>
-                    <option className="bg-black">$50k+</option>
+                    <option className="bg-black">₹5,000 - ₹25,000</option>
+                    <option className="bg-black">₹25,000 - ₹75,000</option>
+                    <option className="bg-black">₹75,000 - ₹3,00,000</option>
+                    <option className="bg-black">₹3,00,000+</option>
                   </select>
                 </div>
               </div>

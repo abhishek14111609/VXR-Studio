@@ -8,6 +8,12 @@ import { useSEO, useStructuredData } from '../hooks/useSEO';
 const categories = ['All', 'Reels', 'Ads', 'Photography', 'Branding'];
 const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://backend.vxrmedia.in';
 
+const resolveMediaUrl = (mediaUrl) => {
+  if (!mediaUrl) return '';
+  if (/^https?:\/\//i.test(mediaUrl)) return mediaUrl;
+  return `${apiBaseUrl}${mediaUrl.startsWith('/') ? mediaUrl : `/${mediaUrl}`}`;
+};
+
 const Portfolio = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [selectedItem, setSelectedItem] = useState(null);
@@ -91,20 +97,31 @@ const Portfolio = () => {
         {filteredItems.map((item) => (
           <motion.div
             layout
-            key={item.id}
+            key={item._id || item.id || item.title}
             variants={itemVariants}
             className="group relative aspect-video bg-gray-900 rounded-2xl overflow-hidden cursor-pointer"
             onClick={() => setSelectedItem(item)}
           >
-            <img
-              src={item.url}
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
-            />
+            {item.mediaType === 'video' ? (
+              <video
+                src={resolveMediaUrl(item.mediaUrl)}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+                muted
+                loop
+                playsInline
+                autoPlay
+              />
+            ) : (
+              <img
+                src={resolveMediaUrl(item.mediaUrl)}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
+              />
+            )}
             <div className="absolute inset-0 bg-linear-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-8">
               <p className="text-accent text-sm font-bold tracking-widest mb-2">{item.category.toUpperCase()}</p>
               <h3 className="text-2xl font-bold text-white">{item.title}</h3>
-              {item.type === 'video' && <CirclePlay className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/50" size={60} />}
+              {item.mediaType === 'video' && <CirclePlay className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white/50" size={60} />}
             </div>
           </motion.div>
         ))}
@@ -134,7 +151,18 @@ const Portfolio = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2">
                 <div className="aspect-video md:aspect-auto">
-                  <img src={selectedItem.url} alt={selectedItem.title} className="w-full h-full object-cover" />
+                  {selectedItem.mediaType === 'video' ? (
+                    <video
+                      src={resolveMediaUrl(selectedItem.mediaUrl)}
+                      className="w-full h-full object-cover"
+                      controls
+                      autoPlay
+                      muted
+                      playsInline
+                    />
+                  ) : (
+                    <img src={resolveMediaUrl(selectedItem.mediaUrl)} alt={selectedItem.title} className="w-full h-full object-cover" />
+                  )}
                 </div>
                 <div className="p-12 flex flex-col justify-center">
                   <p className="text-accent font-bold tracking-widest mb-2">{selectedItem.category.toUpperCase()}</p>

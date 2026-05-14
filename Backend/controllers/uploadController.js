@@ -58,6 +58,15 @@ const uploadPortfolioMedia = multer({
     limits: { fileSize: 50 * 1024 * 1024 },
 }).single('media');
 
+const getBaseUrl = (req) => {
+    if (process.env.BASE_URL) {
+        return process.env.BASE_URL;
+    }
+    const protocol = req.get('x-forwarded-proto') || req.protocol;
+    const host = req.get('x-forwarded-host') || req.get('host');
+    return `${protocol}://${host}`;
+};
+
 const handleTeamImageUpload = (req, res) => {
     uploadTeamImage(req, res, (err) => {
         if (err) {
@@ -68,9 +77,8 @@ const handleTeamImageUpload = (req, res) => {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        const protocol = req.get('x-forwarded-proto') || req.protocol;
-        const host = req.get('x-forwarded-host') || req.get('host');
-        const imageUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
+        const baseUrl = getBaseUrl(req);
+        const imageUrl = `${baseUrl}/uploads/${req.file.filename}`;
         return res.status(201).json({ imageUrl });
     });
 };
@@ -85,9 +93,8 @@ const handlePortfolioMediaUpload = (req, res) => {
             return res.status(400).json({ message: 'No file uploaded' });
         }
 
-        const protocol = req.get('x-forwarded-proto') || req.protocol;
-        const host = req.get('x-forwarded-host') || req.get('host');
-        const mediaUrl = `${protocol}://${host}/uploads/${req.file.filename}`;
+        const baseUrl = getBaseUrl(req);
+        const mediaUrl = `${baseUrl}/uploads/${req.file.filename}`;
         const mediaType = req.file.mimetype.startsWith('video/') ? 'video' : 'image';
 
         return res.status(201).json({ mediaUrl, mediaType });

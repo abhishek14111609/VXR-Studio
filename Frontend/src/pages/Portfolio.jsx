@@ -10,7 +10,12 @@ const apiBaseUrl = import.meta.env.VITE_API_URL?.replace(/\/$/, '') || 'https://
 
 const resolveMediaUrl = (mediaUrl) => {
   if (!mediaUrl) return '';
-  if (/^https?:\/\//i.test(mediaUrl)) return mediaUrl;
+  if (/^https?:\/\//i.test(mediaUrl)) {
+    if (window.location.protocol === 'https:' && mediaUrl.startsWith('http://')) {
+      return mediaUrl.replace('http://', 'https://');
+    }
+    return mediaUrl;
+  }
   return `${apiBaseUrl}${mediaUrl.startsWith('/') ? mediaUrl : `/${mediaUrl}`}`;
 };
 

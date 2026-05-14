@@ -7,7 +7,11 @@ const leadSchema = new mongoose.Schema({
   projectType: { type: String },
   budget: { type: String },
   message: { type: String, required: true },
-  status: { type: String, enum: ['new', 'contacted', 'resolved'], default: 'new' }
+  status: { type: String, enum: ['new', 'contacted', 'resolved'], default: 'new' },
+  lastReplySubject: { type: String },
+  lastReplyMessage: { type: String },
+  lastRepliedAt: { type: Date },
+  repliedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Lead', leadSchema);
